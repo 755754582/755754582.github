@@ -1,0 +1,606 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="概述学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 线程错误锦集">
+<meta property="og:url" content="http://yoursite.com/2017/02/23/Android-线程错误锦集/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概述学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！">
+<meta property="og:updated_time" content="2017-02-23T03:28:38.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 线程错误锦集">
+<meta name="twitter:description" content="概述学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Android 线程错误锦集 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 线程错误锦集
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-23T11:10:19+08:00" content="2017-02-23">
+              2017-02-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。<br>而线程正是Android初级者进阶的一个标志，必须要正面刚！<br><a id="more"></a></p>
+<h3 id="问题一：其他线程更新UI。"><a href="#问题一：其他线程更新UI。" class="headerlink" title="问题一：其他线程更新UI。"></a>问题一：其他线程更新UI。</h3><pre><code>private void showTime() {
+    new Thread(){
+        @Override
+        public void run() {
+            //月份是从0-11算的，所以显示的话要+1
+            String times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                    + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                    + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+            tvTime.setText(times);
+        }
+    }.start();
+</code></pre><blockquote>
+<p>报错：Only the original thread that created a view hierarchy can touch its views.</p>
+</blockquote>
+<p>这个错误很常见，基本上写线程操作都遇到过这个错误。根本原因是view控件的线程安全问题，通俗点讲就是所有的更新UI操作都需要在主线程（也就是UI线程中完成），而不能在新开的子线程中操作。总之一句话——不能在其他线程里更新UI！</p>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>在主线程中new一个Handler类（注意导入android.os.Handler;包），并重写handleMessage()方法。</li>
+<li>新开启一个线程，将run里面跑的数据交给Message对象，然后将Message对象交给第一步new的handler.sendMessage().</li>
+<li>在handlerMessage()方法里给组件赋值，更新UI。</li>
+</ol>
+<p><strong>看源码</strong>：</p>
+<pre><code>Handler handler=new Handler() {//第一步
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what){      //第三步
+            case 0x11:
+                tvTime.setText(msg.obj.toString());
+            break;
+        }
+    }
+};
+private void showTime() { //第二步
+    new Thread(){
+        @Override
+        public void run() {
+            while (!quit){
+//                 等待一秒钟
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //月份是从0-11算的，所以显示的话要+1
+                time.setToNow();
+
+                times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                        + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                        + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+                Message msg=Message.obtain();
+                msg.what=0x11;
+                msg.obj=times;
+                handler.sendMessage(msg);
+            }
+        }
+    }.start();
+}
+</code></pre><p><strong>我这里是用线程不断显示当前时间，精确到秒。这是主要步骤</strong></p>
+<p>待续——</p>
+<p><strong>总结</strong>：</p>
+<p>大前提：线程分为主线程和其他子线程，每个线程里还都有一个Handler，handler还有looper。规则：只能在主线程（UI线程）中更新UI，子线程只能处理数据。<br>就像一个国家，把资源领土什么的分给各个地方，但是地方必须把产出上交中央，然而并不是直接上交而是通过某个机构，地方也可以有下级，下级上交也是如此。各个不同地方交换数据也是如此，但不能显示数据。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/23/waht/" rel="prev" title="waht">
+                waht <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一：其他线程更新UI。"><span class="nav-number">1.1.</span> <span class="nav-text">问题一：其他线程更新UI。</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
