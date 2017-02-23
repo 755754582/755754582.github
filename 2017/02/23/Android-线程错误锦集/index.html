@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="#概述#学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！
+问题一：其他线程更新UI。private void showTime() {
+    new Thread(){
+        @Override
+        public void">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/02/23/hello-world/index.html">
+<meta property="og:title" content="Android 线程错误锦集">
+<meta property="og:url" content="http://yoursite.com/2017/02/23/Android-线程错误锦集/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2017-02-23T02:43:31.081Z">
+<meta property="og:description" content="#概述#学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！
+问题一：其他线程更新UI。private void showTime() {
+    new Thread(){
+        @Override
+        public void">
+<meta property="og:updated_time" content="2017-02-23T03:20:02.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="Android 线程错误锦集">
+<meta name="twitter:description" content="#概述#学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。而线程正是Android初级者进阶的一个标志，必须要正面刚！
+问题一：其他线程更新UI。private void showTime() {
+    new Thread(){
+        @Override
+        public void">
 
 
 
@@ -111,7 +123,7 @@
   };
 </script>
 
-  <title> Hello World | Hexo </title>
+  <title> Android 线程错误锦集 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -231,7 +243,7 @@
             
             
               
-                Hello World
+                Android 线程错误锦集
               
             
           </h1>
@@ -243,7 +255,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2017-02-23T10:31:44+08:00" content="2017-02-23">
+            <time itemprop="dateCreated" datetime="2017-02-23T11:10:19+08:00" content="2017-02-23">
               2017-02-23
             </time>
           </span>
@@ -271,16 +283,68 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>#概述#<br>学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。<br>而线程正是Android初级者进阶的一个标志，必须要正面刚！</p>
+<h2 id="问题一：其他线程更新UI。"><a href="#问题一：其他线程更新UI。" class="headerlink" title="问题一：其他线程更新UI。"></a>问题一：其他线程更新UI。</h2><pre><code>private void showTime() {
+    new Thread(){
+        @Override
+        public void run() {
+            //月份是从0-11算的，所以显示的话要+1
+            String times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                    + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                    + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+            tvTime.setText(times);
+        }
+    }.start();
+</code></pre><blockquote>
+<p>报错：Only the original thread that created a view hierarchy can touch its views.</p>
+</blockquote>
+<p>这个错误很常见，基本上写线程操作都遇到过这个错误。根本原因是view控件的线程安全问题，通俗点讲就是所有的更新UI操作都需要在主线程（也就是UI线程中完成），而不能在新开的子线程中操作。总之一句话——不能在其他线程里更新UI！</p>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>在主线程中new一个Handler类（注意导入android.os.Handler;包），并重写handleMessage()方法。</li>
+<li>新开启一个线程，将run里面跑的数据交给Message对象，然后将Message对象交给第一步new的handler.sendMessage().</li>
+<li>在handlerMessage()方法里给组件赋值，更新UI。</li>
+</ol>
+<p><strong>看源码</strong>：</p>
+<pre><code>Handler handler=new Handler() {//第一步
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what){      //第三步
+            case 0x11:
+                tvTime.setText(msg.obj.toString());
+            break;
+        }
+    }
+};
+private void showTime() { //第二步
+    new Thread(){
+        @Override
+        public void run() {
+            while (!quit){
+//                 等待一秒钟
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //月份是从0-11算的，所以显示的话要+1
+                time.setToNow();
+
+                times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                        + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                        + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+                Message msg=Message.obtain();
+                msg.what=0x11;
+                msg.obj=times;
+                handler.sendMessage(msg);
+            }
+        }
+    }.start();
+}
+</code></pre><p><strong>我这里是用线程不断显示当前时间，精确到秒。这是主要步骤</strong></p>
+<p>待续——</p>
+<p><strong>总结</strong>：</p>
+<p>大前提：线程分为主线程和其他子线程，每个线程里还都有一个Handler，handler还有looper。规则：只能在主线程（UI线程）中更新UI，子线程只能处理数据。<br>就像一个国家，把资源领土什么的分给各个地方，但是地方必须把产出上交中央，然而并不是直接上交而是通过某个机构，地方也可以有下级，下级上交也是如此。各个不同地方交换数据也是如此，但不能显示数据。</p>
 
       
     </div>
@@ -305,13 +369,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/23/Android-线程错误锦集/" rel="prev" title="Android 线程错误锦集">
-                Android 线程错误锦集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -411,7 +475,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题一：其他线程更新UI。"><span class="nav-number">1.</span> <span class="nav-text">问题一：其他线程更新UI。</span></a></li></ol></div>
             
           </div>
         </section>
