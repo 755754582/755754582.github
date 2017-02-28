@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-23T02:43:31.081Z</updated>
+  <updated>2017-02-28T02:41:54.035Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,137 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java入门</title>
+    <link href="http://yoursite.com/2017/02/28/test/"/>
+    <id>http://yoursite.com/2017/02/28/test/</id>
+    <published>2017-02-28T01:54:06.000Z</published>
+    <updated>2017-02-28T02:41:54.035Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="java简介"><a href="#java简介" class="headerlink" title="java简介"></a>java简介</h3><p>Java是由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James Gosling和同事们共同研发，并在1995年正式推出。</p>
+<p>java分为三大体系：JavaME、JavaSE、JavaEE</p>
+<ul>
+<li>JavaME是小规模的嵌入式开发，适合手机等嵌入式设备。</li>
+<li>JavaSE是桌面程序开发，桌面应用，和VC的MFC差不多。</li>
+<li>JavaEE就很强大了，适合网络服务的开发，有很多框架，主要是Spring和Ejb</li>
+</ul>
+<hr>
+<p>假如你已经安装好了java，并且配置好了环境。</p>
+<blockquote>
+<p>配置环境作用：可以在dos命令下使用java。</p>
+<p>比如查看版本：java -version、编译：javac test.java 、运行：java test.class。</p>
+</blockquote>
+<hr>
+<h3 id="第一个java程序"><a href="#第一个java程序" class="headerlink" title="第一个java程序"></a>第一个java程序</h3><p>以下我们通过一个简单的实例来展示 Java 编程，创建文件 Test.java(文件名需与类名一致), 代码如下：</p>
+<pre><code>public class Test {
+        public static void main(String []args) {
+            System.out.println(&quot;Hello World&quot;);
+        }
+}
+</code></pre><p>然后运行+cmd进入dos界面，cd到Test.java目录下：</p>
+<pre><code>$ javac Test.java
+$ java Test
+Hello World
+</code></pre><h3 id="执行命令解析"><a href="#执行命令解析" class="headerlink" title="执行命令解析"></a>执行命令解析</h3><p>以上我们使用了两个命令 javac 和 java。</p>
+<p>javac 后面跟着的是java文件的文件名，例如 HelloWorld.java。 该命令用于将 java 源文件编译为 class 字节码文件，如： javac HelloWorld.java。</p>
+<p>运行javac命令后，如果成功编译没有错误的话，会出现一个 HelloWorld.class 的文件。</p>
+<p>java 后面跟着的是java文件中的类名,例如 HelloWorld 就是类名，如: java HelloWorld。</p>
+<p>注意：java命令后面不要加.class。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;java简介&quot;&gt;&lt;a href=&quot;#java简介&quot; class=&quot;headerlink&quot; title=&quot;java简介&quot;&gt;&lt;/a&gt;java简介&lt;/h3&gt;&lt;p&gt;Java是由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/02/23/Android-%E7%BA%BF%E7%A8%8B%E9%94%99%E8%AF%AF%E9%94%A6%E9%9B%86/"/>
+    <id>http://yoursite.com/2017/02/23/Android-线程错误锦集/</id>
+    <published>2017-02-23T03:10:20.009Z</published>
+    <updated>2017-02-28T02:41:44.083Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<p>title: Android 线程错误锦集<br>date: 2017-02-23 11:10:19<br>tags:—</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。<br>而线程正是Android初级者进阶的一个标志，必须要正面刚！<br><a id="more"></a></p>
+<h3 id="问题一：其他线程更新UI。"><a href="#问题一：其他线程更新UI。" class="headerlink" title="问题一：其他线程更新UI。"></a>问题一：其他线程更新UI。</h3><pre><code>private void showTime() {
+    new Thread(){
+        @Override
+        public void run() {
+            //月份是从0-11算的，所以显示的话要+1
+            String times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                    + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                    + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+            tvTime.setText(times);
+        }
+    }.start();
+</code></pre><blockquote>
+<p>报错：Only the original thread that created a view hierarchy can touch its views.</p>
+</blockquote>
+<p>这个错误很常见，基本上写线程操作都遇到过这个错误。根本原因是view控件的线程安全问题，通俗点讲就是所有的更新UI操作都需要在主线程（也就是UI线程中完成），而不能在新开的子线程中操作。总之一句话——不能在其他线程里更新UI！</p>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>在主线程中new一个Handler类（注意导入android.os.Handler;包），并重写handleMessage()方法。</li>
+<li>新开启一个线程，将run里面跑的数据交给Message对象，然后将Message对象交给第一步new的handler.sendMessage().</li>
+<li>在handlerMessage()方法里给组件赋值，更新UI。</li>
+</ol>
+<p><strong>看源码</strong>：</p>
+<pre><code>Handler handler=new Handler() {//第一步
+    @Override
+    public void handleMessage(Message msg) {
+        switch (msg.what){      //第三步
+            case 0x11:
+                tvTime.setText(msg.obj.toString());
+            break;
+        }
+    }
+};
+private void showTime() { //第二步
+    new Thread(){
+        @Override
+        public void run() {
+            while (!quit){
+//                 等待一秒钟
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //月份是从0-11算的，所以显示的话要+1
+                time.setToNow();
+
+                times = time.year + &quot;年&quot; + time.month+1 + &quot;月&quot; + time.monthDay
+                        + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                        + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+                Message msg=Message.obtain();
+                msg.what=0x11;
+                msg.obj=times;
+                handler.sendMessage(msg);
+            }
+        }
+    }.start();
+}
+</code></pre><p><strong>我这里是用线程不断显示当前时间，精确到秒。这是主要步骤</strong></p>
+<p>待续——</p>
+<p><strong>总结</strong>：</p>
+<p>大前提：线程分为主线程和其他子线程，每个线程里还都有一个Handler，handler还有looper。规则：只能在主线程（UI线程）中更新UI，子线程只能处理数据。<br>就像一个国家，把资源领土什么的分给各个地方，但是地方必须把产出上交中央，然而并不是直接上交而是通过某个机构，地方也可以有下级，下级上交也是如此。各个不同地方交换数据也是如此，但不能显示数据。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt;title: Android 线程错误锦集&lt;br&gt;date: 2017-02-23 11:10:19&lt;br&gt;tags:—&lt;/p&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。&lt;br&gt;而线程正是Android初级者进阶的一个标志，必须要正面刚！&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
