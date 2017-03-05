@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-28T02:41:54.035Z</updated>
+  <updated>2017-03-05T13:58:45.915Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/28/test/"/>
     <id>http://yoursite.com/2017/02/28/test/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-02-28T02:41:54.035Z</updated>
+    <updated>2017-03-05T13:58:45.915Z</updated>
     
     <content type="html"><![CDATA[<h3 id="java简介"><a href="#java简介" class="headerlink" title="java简介"></a>java简介</h3><p>Java是由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James Gosling和同事们共同研发，并在1995年正式推出。</p>
 <p>java分为三大体系：JavaME、JavaSE、JavaEE</p>
@@ -60,18 +60,18 @@ Hello World
     </summary>
     
     
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
   </entry>
   
   <entry>
-    <title></title>
+    <title>Android 线程错误锦集</title>
     <link href="http://yoursite.com/2017/02/23/Android-%E7%BA%BF%E7%A8%8B%E9%94%99%E8%AF%AF%E9%94%A6%E9%9B%86/"/>
     <id>http://yoursite.com/2017/02/23/Android-线程错误锦集/</id>
-    <published>2017-02-23T03:10:20.009Z</published>
-    <updated>2017-02-28T02:41:44.083Z</updated>
+    <published>2017-02-23T03:10:19.000Z</published>
+    <updated>2017-03-05T13:58:37.308Z</updated>
     
-    <content type="html"><![CDATA[<hr>
-<p>title: Android 线程错误锦集<br>date: 2017-02-23 11:10:19<br>tags:—</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。<br>而线程正是Android初级者进阶的一个标志，必须要正面刚！<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。<br>而线程正是Android初级者进阶的一个标志，必须要正面刚！<br><a id="more"></a></p>
 <h3 id="问题一：其他线程更新UI。"><a href="#问题一：其他线程更新UI。" class="headerlink" title="问题一：其他线程更新UI。"></a>问题一：其他线程更新UI。</h3><pre><code>private void showTime() {
     new Thread(){
         @Override
@@ -137,12 +137,12 @@ private void showTime() { //第二步
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;title: Android 线程错误锦集&lt;br&gt;date: 2017-02-23 11:10:19&lt;br&gt;tags:—&lt;/p&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。&lt;br&gt;而线程正是Android初级者进阶的一个标志，必须要正面刚！&lt;br&gt;
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;学Android有一段时间了，一直觉得线程很难，原因大概是不常用吧! 正所谓陌生生难，就像刚刚接触编程都觉得编程不简单一样，多用用就熟悉了。&lt;br&gt;而线程正是Android初级者进阶的一个标志，必须要正面刚！&lt;br&gt;
     
     </summary>
     
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
   </entry>
   
