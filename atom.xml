@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-05T13:58:45.915Z</updated>
+  <updated>2017-03-27T06:27:01.653Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,12 @@
   
   <entry>
     <title>java入门</title>
-    <link href="http://yoursite.com/2017/02/28/test/"/>
-    <id>http://yoursite.com/2017/02/28/test/</id>
+    <link href="http://yoursite.com/2017/02/28/java%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2017/02/28/java入门/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-03-05T13:58:45.915Z</updated>
+    <updated>2017-03-27T06:27:01.653Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="java简介"><a href="#java简介" class="headerlink" title="java简介"></a>java简介</h3><p>Java是由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James Gosling和同事们共同研发，并在1995年正式推出。</p>
-<p>java分为三大体系：JavaME、JavaSE、JavaEE</p>
+    <content type="html"><![CDATA[<h3 id="java简介"><a href="#java简介" class="headerlink" title="java简介"></a>java简介</h3><p>Java是由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James Gosling和同事们共同研发，并在1995年正式推出。<br>&lt;–more–&gt;<br>java分为三大体系：JavaME、JavaSE、JavaEE</p>
 <ul>
 <li>JavaME是小规模的嵌入式开发，适合手机等嵌入式设备。</li>
 <li>JavaSE是桌面程序开发，桌面应用，和VC的MFC差不多。</li>
