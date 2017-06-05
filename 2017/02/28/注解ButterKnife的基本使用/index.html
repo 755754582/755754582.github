@@ -6,14 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: java | BlackYu&#39;s Blog</title>
+  <title>注解ButterKnife的基本使用 | BlackYu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BlackYu's Blog">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+  <meta name="description" content="概述参考文章：http://www.jianshu.com/p/9c37856ddf09
+ButterKnife的最新版本是8.4.0。
+首先，需要导入ButterKnife的jar包。
+在AndroidStudio中，File-&amp;gt;Project Structure-&amp;gt;Dependencies-&amp;gt;Library dependency 搜索butterknife即可，第一个就是.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注解ButterKnife的基本使用">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/注解ButterKnife的基本使用/index.html">
 <meta property="og:site_name" content="BlackYu's Blog">
+<meta property="og:description" content="概述参考文章：http://www.jianshu.com/p/9c37856ddf09
+ButterKnife的最新版本是8.4.0。
+首先，需要导入ButterKnife的jar包。
+在AndroidStudio中，File-&amp;gt;Project Structure-&amp;gt;Dependencies-&amp;gt;Library dependency 搜索butterknife即可，第一个就是.">
+<meta property="og:image" content="http://img.blog.csdn.net/20170110163859957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170111125826322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-06-05T14:26:16.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BlackYu's Blog">
+<meta name="twitter:title" content="注解ButterKnife的基本使用">
+<meta name="twitter:description" content="概述参考文章：http://www.jianshu.com/p/9c37856ddf09
+ButterKnife的最新版本是8.4.0。
+首先，需要导入ButterKnife的jar包。
+在AndroidStudio中，File-&amp;gt;Project Structure-&amp;gt;Dependencies-&amp;gt;Library dependency 搜索butterknife即可，第一个就是.">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170110163859957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
   
     <link rel="alternative" href="/atom.xml" title="BlackYu&#39;s Blog" type="application/atom+xml">
   
@@ -153,60 +169,239 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-注解ButterKnife的基本使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/java入门/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/java入门/">java入门</a>
+    <h1 class="article-title" itemprop="name">
+      注解ButterKnife的基本使用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/02/28/注解ButterKnife的基本使用/" class="archive-article-date">
+  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09" target="_blank" rel="external">http://www.jianshu.com/p/9c37856ddf09</a></p>
+<p>ButterKnife的最新版本是8.4.0。</p>
+<p>首先，需要导入ButterKnife的jar包。</p>
+<p>在AndroidStudio中，File-&gt;Project Structure-&gt;Dependencies-&gt;Library dependency 搜索butterknife即可，第一个就是.</p>
+<p>另外一种就是直接在build:grade（app）dependencies里添加：</p>
+<blockquote>
+<pre><code>compile &apos;com.jakewharton:butterknife:8.4.0&apos;
+annotationProcessor &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;
+</code></pre></blockquote>
+<p>ok，现在正式开始使用吧，用法也很简单<br>在Activity子类的onCreate()方法里使用ButterKnife.bind(this);即可</p>
+<blockquote>
+<pre><code>protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
+    tv1.setText(&quot;hi!sy&quot;)
+</code></pre></blockquote>
+<p><strong>注意</strong>：一定要在setContentView之后写。</p>
+<p><strong>再然后</strong>，把光标放在<strong>R.layout.activity_main</strong>上，鼠标右击，选中<strong>Generate…(Alt+Insert)</strong>,点击会出现：</p>
+<p><img src="http://img.blog.csdn.net/20170110163859957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><strong>然后这样</strong><br><img src="http://img.blog.csdn.net/20170111125826322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>选中的有TextView点击事件和findViewById的注解，点击Confirm就成功了！</p>
+<p>什么，你说没有，别着急，你需要安装一个小插件（不要嫌麻烦，其实很简单，一劳永逸）</p>
+<p>在AndroidStudio-&gt;File-&gt;Settings-&gt;Plugins-&gt;搜索Zelezny下载添加就行 ，可以快速生成对应组件的实例对象，不用手动写。</p>
+<p>使用时，在要导入注解的Activity 或 Fragment 或 ViewHolder的layout资源代码上，右键——&gt;<strong>Generate</strong>——<strong>Generate ButterKnife Injections</strong>。</p>
+<p><strong>源码:</strong></p>
+<blockquote>
+<pre><code>public class MainActivity extends Activity {
+
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.activity_main)
+    RelativeLayout activityMain;
+    @BindView(R.id.tv_cal)
+    TextView tvCal;
+    @BindView(R.id.tv_date)
+    TextView tvDate;
+    Time time;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        tvTime.setText(&quot;Time类&quot;);
+        tvCal.setText(&quot;Calender类&quot;);
+        tvDate.setText(&quot;Date类&quot;);
+
+        initTime();
+
+    }
+
+    private void initTime() {
+        time = new Time();
+        time.setToNow();
+
+    }
+
+    @OnClick({R.id.tv_cal, R.id.tv_date,R.id.tv_time})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_time://点击第一个
+                String times = time.year + &quot;年&quot; + time.month + &quot;月&quot; + time.monthDay
+                        + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
+                        + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
+                Toast.makeText(this, Time.getCurrentTimezone() + times, Toast.LENGTH_SHORT).show();
+                tvTime.setText(times);
+                break;
+            case R.id.tv_cal:
+                break;
+            case R.id.tv_date:
+                break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        Unbinder unbinder=ButterKnife.bind(this);
+//        unbinder.unbind();
+        ButterKnife.bind(this).unbind();
+    }
+
+}
+</code></pre></blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/28/注解ButterKnife的基本使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/02/28/java入门/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java入门
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/02/23/Android-线程错误锦集/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android 线程错误锦集</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="注解ButterKnife的基本使用" data-title="注解ButterKnife的基本使用" data-url="http://yoursite.com/2017/02/28/注解ButterKnife的基本使用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -229,9 +424,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
