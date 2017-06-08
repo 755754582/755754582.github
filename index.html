@@ -155,6 +155,308 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Android EditText回车不换行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/28/Android EditText回车不换行/">Android EditText回车不换行</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/28/Android EditText回车不换行/" class="archive-article-date">
+  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。</p>
+<p>首先获取组件id：</p>
+<p> edt_city= (EditText) findViewById(R.id.edt_city);</p>
+<p>然后：</p>
+<pre><code>edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
+    }
+});
+</code></pre><p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/28/Android EditText回车不换行/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android实现一个简单的手电筒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/28/Android实现一个简单的手电筒/">Android实现一个简单的手电筒</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/28/Android实现一个简单的手电筒/" class="archive-article-date">
+  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="添加手机权限"><a href="#添加手机权限" class="headerlink" title="添加手机权限"></a>添加手机权限</h2><pre><code>&lt;uses-permission android:name=&quot;android.permission.FLASHLIGHT&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.handware.camera&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.handware.autofocus&quot;&gt;&lt;/uses-permission&gt;
+</code></pre><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
+    android:id=&quot;@+id/btn_open&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    /&gt;
+</code></pre><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>import android.app.Activity;
+import android.content.Context;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends Activity {
+private Button btn_open;
+private boolean status=false;
+private CameraManager cm;
+private Camera camera;
+Camera.Parameters parameters;
+MainActivity instance;
+
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    instance=this;
+    btn_open= (Button) findViewById(R.id.btn_open);
+    btn_open.setText(&quot;open&quot;);
+    cm= (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+    camera=Camera.open();
+    btn_open.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(!status){
+                btn_open.setText(&quot;close&quot;);
+                status=true;
+                new Thread(new TurnOnLight()).start();
+            }else{
+                parameters=camera.getParameters();
+                instance.parameters.setFlashMode(&quot;off&quot;);
+                camera.setParameters(instance.parameters);
+                btn_open.setText(&quot;open&quot;);
+                status=false;
+            }
+        }
+    });
+    }
+
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    camera.stopPreview();
+    camera.release();
+    camera = null;
+}
+
+
+private class TurnOnLight implements Runnable {
+    @Override
+    public void run() {
+        instance.parameters=instance.camera.getParameters();
+        instance.parameters.setFlashMode(&quot;torch&quot;);
+        instance.camera.setParameters(instance.parameters);
+    }
+ }
+}
+</code></pre><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>声明完调用系统硬件后，想要使用闪光灯则要创建CameraManager ,Camera，以及Camera.Parameters对象。顾名思义，前面两个不用解释，Parameters表示相机服务的参数（例如聚焦，闪关灯，滤镜等等的一些相关配置）</p>
+<p>具体操作:</p>
+<pre><code>CameraManager cm= (CameraManager)getSystemService(Context.CAMERA_SERVICE)
+Camera camera=Camera.open();
+Camera.Parameters parameter=camera.getParameters();
+//打开闪光灯
+parameters.setFlashMode(“torch”);//打开
+camera.setParameters(paramsters);
+//关闭闪光灯
+parameters.setFlashMode(“off”);//关闭
+camera.setParameters(paramsters);
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/28/Android实现一个简单的手电筒/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-android 点击两次后退键退出程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/28/android 点击两次后退键退出程序/">Android 点击两次后退键退出程序</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/28/android 点击两次后退键退出程序/" class="archive-article-date">
+  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在大多数应用都有点两次后退键退出程序，防止用户误操作。我觉得这是一个很和谐的设计，和注册输入两次密码防遗忘有着异曲同工之妙，其实生活中大多数行为也有着相似的地方，比如：出门锁门再拧一下，把钱包放口袋再拍一下，敲完代码再回车一下，哈哈，瞎扯了~</p>
+<p>下面说正事：</p>
+<p>再按一次退出程序</p>
+<p>思路是这样的：本质上我们是需要获取两次点击时间的间隔,然后作出逻辑判断。</p>
+<p>首先，声明一个第一次点击的时间，设置为0 </p>
+<pre><code>private long firstTime=0;
+</code></pre><p>然后获取系统当前时间，减去第一次点击的时间，如果大于两秒，则提示Toast，若小于两秒则退出，执行System.exit(0); </p>
+<pre><code>System.currentTimeMillis()-firstTime;
+</code></pre><p>第一次点击肯定Toast，不过没关系，我们此时给firstTime赋值为当前时间（第一次点击的时间）</p>
+<p>第二点击再用当前时间－firstTime=间隔时间</p>
+<p>如果小于两秒，则退出</p>
+<pre><code>@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if(keyCode==KeyEvent.KEYCODE_BACK &amp;&amp; event.getAction()==KeyEvent.ACTION_DOWN){
+        if((System.currentTimeMillis()-firstTime) &gt; 2000){
+            Toast.makeText(getApplicationContext(), &quot;再按一次退出程序&quot;, Toast.LENGTH_SHORT).show();
+            firstTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
+        return true;
+    }
+    return super.onKeyDown(keyCode, event);
+}
+</code></pre><p>}</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/28/android 点击两次后退键退出程序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-java入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

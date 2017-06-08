@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/2 | BlackYu&#39;s Blog</title>
+  <title>Android实现一个简单的手电筒 | BlackYu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BlackYu's Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/02/index.html">
+  <meta name="description" content="添加手机权限&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.CAMERA&amp;quot;&amp;gt;&amp;lt;/uses-permiss">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android实现一个简单的手电筒">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/Android实现一个简单的手电筒/index.html">
 <meta property="og:site_name" content="BlackYu's Blog">
+<meta property="og:description" content="添加手机权限&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.CAMERA&amp;quot;&amp;gt;&amp;lt;/uses-permiss">
+<meta property="og:updated_time" content="2017-06-08T00:11:59.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BlackYu's Blog">
+<meta name="twitter:title" content="Android实现一个简单的手电筒">
+<meta name="twitter:description" content="添加手机权限&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.CAMERA&amp;quot;&amp;gt;&amp;lt;/uses-permiss">
   
     <link rel="alternative" href="/atom.xml" title="BlackYu&#39;s Blog" type="application/atom+xml">
   
@@ -153,36 +160,116 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android实现一个简单的手电筒" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android实现一个简单的手电筒
+    </h1>
+  
+
+        
+        <a href="/2017/02/28/Android实现一个简单的手电筒/" class="archive-article-date">
+  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="添加手机权限"><a href="#添加手机权限" class="headerlink" title="添加手机权限"></a>添加手机权限</h2><pre><code>&lt;uses-permission android:name=&quot;android.permission.FLASHLIGHT&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.handware.camera&quot;&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name=&quot;android.handware.autofocus&quot;&gt;&lt;/uses-permission&gt;
+</code></pre><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
+    android:id=&quot;@+id/btn_open&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    /&gt;
+</code></pre><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>import android.app.Activity;
+import android.content.Context;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends Activity {
+private Button btn_open;
+private boolean status=false;
+private CameraManager cm;
+private Camera camera;
+Camera.Parameters parameters;
+MainActivity instance;
+
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    instance=this;
+    btn_open= (Button) findViewById(R.id.btn_open);
+    btn_open.setText(&quot;open&quot;);
+    cm= (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+    camera=Camera.open();
+    btn_open.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(!status){
+                btn_open.setText(&quot;close&quot;);
+                status=true;
+                new Thread(new TurnOnLight()).start();
+            }else{
+                parameters=camera.getParameters();
+                instance.parameters.setFlashMode(&quot;off&quot;);
+                camera.setParameters(instance.parameters);
+                btn_open.setText(&quot;open&quot;);
+                status=false;
+            }
+        }
+    });
+    }
+
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    camera.stopPreview();
+    camera.release();
+    camera = null;
+}
+
+
+private class TurnOnLight implements Runnable {
+    @Override
+    public void run() {
+        instance.parameters=instance.camera.getParameters();
+        instance.parameters.setFlashMode(&quot;torch&quot;);
+        instance.camera.setParameters(instance.parameters);
+    }
+ }
+}
+</code></pre><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>声明完调用系统硬件后，想要使用闪光灯则要创建CameraManager ,Camera，以及Camera.Parameters对象。顾名思义，前面两个不用解释，Parameters表示相机服务的参数（例如聚焦，闪关灯，滤镜等等的一些相关配置）</p>
+<p>具体操作:</p>
+<pre><code>CameraManager cm= (CameraManager)getSystemService(Context.CAMERA_SERVICE)
+Camera camera=Camera.open();
+Camera.Parameters parameter=camera.getParameters();
+//打开闪光灯
+parameters.setFlashMode(“torch”);//打开
+camera.setParameters(paramsters);
+//关闭闪光灯
+parameters.setFlashMode(“off”);//关闭
+camera.setParameters(paramsters);
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/Android EditText回车不换行/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/Android EditText回车不换行/">Android EditText回车不换行</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,209 +281,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/28/Android实现一个简单的手电筒/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/Android实现一个简单的手电筒/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/Android实现一个简单的手电筒/">Android实现一个简单的手电筒</a>
-    </h1>
+    <a href="/2017/02/28/Android EditText回车不换行/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android EditText回车不换行
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/28/android 点击两次后退键退出程序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android 点击两次后退键退出程序</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android实现一个简单的手电筒" data-title="Android实现一个简单的手电筒" data-url="http://yoursite.com/2017/02/28/Android实现一个简单的手电筒/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/android 点击两次后退键退出程序/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/android 点击两次后退键退出程序/">Android 点击两次后退键退出程序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/java入门/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/java入门/">java入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/28/注解ButterKnife的基本使用/" class="archive-article-date">
-  	<time datetime="2017-02-28T01:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/28/注解ButterKnife的基本使用/">注解ButterKnife的基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/23/Android-线程错误锦集/" class="archive-article-date">
-  	<time datetime="2017-02-23T03:10:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/23/Android-线程错误锦集/">Android 线程错误锦集</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -419,8 +412,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
