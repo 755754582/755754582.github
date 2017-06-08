@@ -24,7 +24,7 @@ pr">
 思路是这样的：本质上我们是需要获取两次点击时间的间隔,然后作出逻辑判断。
 首先，声明一个第一次点击的时间，设置为0 
 pr">
-<meta property="og:updated_time" content="2017-06-08T00:17:49.211Z">
+<meta property="og:updated_time" content="2017-06-08T00:23:35.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 点击两次后退键退出程序">
 <meta name="twitter:description" content="现在大多数应用都有点两次后退键退出程序，防止用户误操作。我觉得这是一个很和谐的设计，和注册输入两次密码防遗忘有着异曲同工之妙，其实生活中大多数行为也有着相似的地方，比如：出门锁门再拧一下，把钱包放口袋再拍一下，敲完代码再回车一下，哈哈，瞎扯了~
@@ -198,7 +198,8 @@ pr">
 <p>思路是这样的：本质上我们是需要获取两次点击时间的间隔,然后作出逻辑判断。</p>
 <p>首先，声明一个第一次点击的时间，设置为0 </p>
 <pre><code>private long firstTime=0;
-</code></pre><p>然后获取系统当前时间，减去第一次点击的时间，如果大于两秒，则提示Toast，若小于两秒则退出，执行System.exit(0); </p>
+</code></pre><a id="more"></a>
+<p>然后获取系统当前时间，减去第一次点击的时间，如果大于两秒，则提示Toast，若小于两秒则退出，执行System.exit(0); </p>
 <pre><code>System.currentTimeMillis()-firstTime;
 </code></pre><p>第一次点击肯定Toast，不过没关系，我们此时给firstTime赋值为当前时间（第一次点击的时间）</p>
 <p>第二点击再用当前时间－firstTime=间隔时间</p>
@@ -439,10 +440,6 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="BlackYu's Blog">
 <meta property="og:description" content="添加手机权限&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
 &amp;lt;uses-permission android:name=&amp;quot;android.permission.CAMERA&amp;quot;&amp;gt;&amp;lt;/uses-permiss">
-<meta property="og:updated_time" content="2017-06-08T00:11:59.525Z">
+<meta property="og:updated_time" content="2017-06-08T00:22:04.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android实现一个简单的手电筒">
 <meta name="twitter:description" content="添加手机权限&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
@@ -184,7 +184,8 @@
 &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;&gt;&lt;/uses-permission&gt;
 &lt;uses-permission android:name=&quot;android.handware.camera&quot;&gt;&lt;/uses-permission&gt;
 &lt;uses-permission android:name=&quot;android.handware.autofocus&quot;&gt;&lt;/uses-permission&gt;
-</code></pre><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
+</code></pre><a id="more"></a>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
     android:id=&quot;@+id/btn_open&quot;
     android:layout_width=&quot;wrap_content&quot;
     android:layout_height=&quot;wrap_content&quot;
@@ -240,7 +241,6 @@ protected void onDestroy() {
     camera.release();
     camera = null;
 }
-
 
 private class TurnOnLight implements Runnable {
     @Override
@@ -483,10 +483,6 @@ camera.setParameters(paramsters);
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
             
             <div class="clearfix"></div>

@@ -48,13 +48,14 @@
     <link href="http://yoursite.com/2017/02/28/Android%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%8B%E7%94%B5%E7%AD%92/"/>
     <id>http://yoursite.com/2017/02/28/Android实现一个简单的手电筒/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-06-08T00:11:59.525Z</updated>
+    <updated>2017-06-08T00:22:04.557Z</updated>
     
     <content type="html"><![CDATA[<h2 id="添加手机权限"><a href="#添加手机权限" class="headerlink" title="添加手机权限"></a>添加手机权限</h2><pre><code>&lt;uses-permission android:name=&quot;android.permission.FLASHLIGHT&quot;&gt;&lt;/uses-permission&gt;
 &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;&gt;&lt;/uses-permission&gt;
 &lt;uses-permission android:name=&quot;android.handware.camera&quot;&gt;&lt;/uses-permission&gt;
 &lt;uses-permission android:name=&quot;android.handware.autofocus&quot;&gt;&lt;/uses-permission&gt;
-</code></pre><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
+</code></pre><a id="more"></a>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>&lt;Button
     android:id=&quot;@+id/btn_open&quot;
     android:layout_width=&quot;wrap_content&quot;
     android:layout_height=&quot;wrap_content&quot;
@@ -111,7 +112,6 @@ protected void onDestroy() {
     camera = null;
 }
 
-
 private class TurnOnLight implements Runnable {
     @Override
     public void run() {
@@ -136,7 +136,11 @@ camera.setParameters(paramsters);
     
     <summary type="html">
     
-      &lt;h2 id=&quot;添加手机权限&quot;&gt;&lt;a href=&quot;#添加手机权限&quot; class=&quot;headerlink&quot; title=&quot;添加手机权限&quot;&gt;&lt;/a&gt;添加手机权限&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;uses-permission android:name=&amp;quot;android
+      &lt;h2 id=&quot;添加手机权限&quot;&gt;&lt;a href=&quot;#添加手机权限&quot; class=&quot;headerlink&quot; title=&quot;添加手机权限&quot;&gt;&lt;/a&gt;添加手机权限&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;uses-permission android:name=&amp;quot;android.permission.FLASHLIGHT&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.CAMERA&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.handware.camera&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.handware.autofocus&amp;quot;&amp;gt;&amp;lt;/uses-permission&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -150,7 +154,7 @@ camera.setParameters(paramsters);
     <link href="http://yoursite.com/2017/02/28/android%20%E7%82%B9%E5%87%BB%E4%B8%A4%E6%AC%A1%E5%90%8E%E9%80%80%E9%94%AE%E9%80%80%E5%87%BA%E7%A8%8B%E5%BA%8F/"/>
     <id>http://yoursite.com/2017/02/28/android 点击两次后退键退出程序/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-06-08T00:17:49.211Z</updated>
+    <updated>2017-06-08T00:23:35.302Z</updated>
     
     <content type="html"><![CDATA[<p>现在大多数应用都有点两次后退键退出程序，防止用户误操作。我觉得这是一个很和谐的设计，和注册输入两次密码防遗忘有着异曲同工之妙，其实生活中大多数行为也有着相似的地方，比如：出门锁门再拧一下，把钱包放口袋再拍一下，敲完代码再回车一下，哈哈，瞎扯了~</p>
 <p>下面说正事：</p>
@@ -158,7 +162,8 @@ camera.setParameters(paramsters);
 <p>思路是这样的：本质上我们是需要获取两次点击时间的间隔,然后作出逻辑判断。</p>
 <p>首先，声明一个第一次点击的时间，设置为0 </p>
 <pre><code>private long firstTime=0;
-</code></pre><p>然后获取系统当前时间，减去第一次点击的时间，如果大于两秒，则提示Toast，若小于两秒则退出，执行System.exit(0); </p>
+</code></pre><a id="more"></a>
+<p>然后获取系统当前时间，减去第一次点击的时间，如果大于两秒，则提示Toast，若小于两秒则退出，执行System.exit(0); </p>
 <pre><code>System.currentTimeMillis()-firstTime;
 </code></pre><p>第一次点击肯定Toast，不过没关系，我们此时给firstTime赋值为当前时间（第一次点击的时间）</p>
 <p>第二点击再用当前时间－firstTime=间隔时间</p>
@@ -183,7 +188,12 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
     <summary type="html">
     
       &lt;p&gt;现在大多数应用都有点两次后退键退出程序，防止用户误操作。我觉得这是一个很和谐的设计，和注册输入两次密码防遗忘有着异曲同工之妙，其实生活中大多数行为也有着相似的地方，比如：出门锁门再拧一下，把钱包放口袋再拍一下，敲完代码再回车一下，哈哈，瞎扯了~&lt;/p&gt;
-&lt;p&gt;下面说正事：&lt;
+&lt;p&gt;下面说正事：&lt;/p&gt;
+&lt;p&gt;再按一次退出程序&lt;/p&gt;
+&lt;p&gt;思路是这样的：本质上我们是需要获取两次点击时间的间隔,然后作出逻辑判断。&lt;/p&gt;
+&lt;p&gt;首先，声明一个第一次点击的时间，设置为0 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private long firstTime=0;
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -246,7 +256,7 @@ Hello World
     <link href="http://yoursite.com/2017/02/28/%E6%B3%A8%E8%A7%A3ButterKnife%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2017/02/28/注解ButterKnife的基本使用/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-06-08T00:20:14.812Z</updated>
+    <updated>2017-06-08T00:22:51.202Z</updated>
     
     <content type="html"><![CDATA[<p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09" target="_blank" rel="external">http://www.jianshu.com/p/9c37856ddf09</a></p>
 <p>ButterKnife的最新版本是8.4.0。</p>
@@ -344,7 +354,7 @@ annotationProcessor &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;
     </summary>
     
     
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
   </entry>
   
