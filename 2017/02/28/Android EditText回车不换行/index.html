@@ -11,8 +11,7 @@
   <meta name="description" content="概述有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。
 首先获取组件id：
  edt_city= (EditText) findViewById(R.id.edt_city);
-然后：
-edt_city.setOnEditorActionListener(new TextView.OnEditorAc">
+然后：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android EditText回车不换行">
 <meta property="og:url" content="http://yoursite.com/2017/02/28/Android EditText回车不换行/index.html">
@@ -20,16 +19,14 @@ edt_city.setOnEditorActionListener(new TextView.OnEditorAc">
 <meta property="og:description" content="概述有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。
 首先获取组件id：
  edt_city= (EditText) findViewById(R.id.edt_city);
-然后：
-edt_city.setOnEditorActionListener(new TextView.OnEditorAc">
-<meta property="og:updated_time" content="2017-06-07T14:42:27.962Z">
+然后：">
+<meta property="og:updated_time" content="2017-06-08T00:20:24.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android EditText回车不换行">
 <meta name="twitter:description" content="概述有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。
 首先获取组件id：
  edt_city= (EditText) findViewById(R.id.edt_city);
-然后：
-edt_city.setOnEditorActionListener(new TextView.OnEditorAc">
+然后：">
   
     <link rel="alternative" href="/atom.xml" title="BlackYu&#39;s Blog" type="application/atom+xml">
   
@@ -192,14 +189,8 @@ edt_city.setOnEditorActionListener(new TextView.OnEditorAc">
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。</p>
 <p>首先获取组件id：</p>
 <p> edt_city= (EditText) findViewById(R.id.edt_city);</p>
-<p>然后：</p>
-<pre><code>edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-    }
-});
-</code></pre><p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
+<p>然后：<br><a id="more"></a><br>        edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {<br>            @Override<br>            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {<br>                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);<br>            }<br>        });</p>
+<p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
 
       
 

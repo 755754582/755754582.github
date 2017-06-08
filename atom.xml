@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-07T14:42:27.962Z</updated>
+  <updated>2017-06-08T00:20:24.172Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,24 +20,21 @@
     <link href="http://yoursite.com/2017/02/28/Android%20EditText%E5%9B%9E%E8%BD%A6%E4%B8%8D%E6%8D%A2%E8%A1%8C/"/>
     <id>http://yoursite.com/2017/02/28/Android EditText回车不换行/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-06-07T14:42:27.962Z</updated>
+    <updated>2017-06-08T00:20:24.172Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。</p>
 <p>首先获取组件id：</p>
 <p> edt_city= (EditText) findViewById(R.id.edt_city);</p>
-<p>然后：</p>
-<pre><code>edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-    }
-});
-</code></pre><p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
+<p>然后：<br><a id="more"></a><br>        edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {<br>            @Override<br>            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {<br>                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);<br>            }<br>        });</p>
+<p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里
+      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。&lt;/p&gt;
+&lt;p&gt;首先获取组件id：&lt;/p&gt;
+&lt;p&gt; edt_city= (EditText) findViewById(R.id.edt_city);&lt;/p&gt;
+&lt;p&gt;然后：&lt;br&gt;
     
     </summary>
     
@@ -249,13 +246,12 @@ Hello World
     <link href="http://yoursite.com/2017/02/28/%E6%B3%A8%E8%A7%A3ButterKnife%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2017/02/28/注解ButterKnife的基本使用/</id>
     <published>2017-02-28T01:54:06.000Z</published>
-    <updated>2017-06-05T14:26:16.692Z</updated>
+    <updated>2017-06-08T00:20:14.812Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09" target="_blank" rel="external">http://www.jianshu.com/p/9c37856ddf09</a></p>
+    <content type="html"><![CDATA[<p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09" target="_blank" rel="external">http://www.jianshu.com/p/9c37856ddf09</a></p>
 <p>ButterKnife的最新版本是8.4.0。</p>
 <p>首先，需要导入ButterKnife的jar包。</p>
-<p>在AndroidStudio中，File-&gt;Project Structure-&gt;Dependencies-&gt;Library dependency 搜索butterknife即可，第一个就是.</p>
-<p>另外一种就是直接在build:grade（app）dependencies里添加：</p>
+<p>在AndroidStudio中，File-&gt;Project Structure-&gt;Dependencies-&gt;Library dependency 搜索butterknife即可，第一个就是.<br><a id="more"></a><br>另外一种就是直接在build:grade（app）dependencies里添加：</p>
 <blockquote>
 <pre><code>compile &apos;com.jakewharton:butterknife:8.4.0&apos;
 annotationProcessor &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;
@@ -340,7 +336,10 @@ annotationProcessor &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;
     
     <summary type="html">
     
-      &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;参考文章：&lt;a href=&quot;http://www.jianshu.com/p/9c37856ddf09&quot; target=&quot;_blank&quot; r
+      &lt;p&gt;参考文章：&lt;a href=&quot;http://www.jianshu.com/p/9c37856ddf09&quot;&gt;http://www.jianshu.com/p/9c37856ddf09&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ButterKnife的最新版本是8.4.0。&lt;/p&gt;
+&lt;p&gt;首先，需要导入ButterKnife的jar包。&lt;/p&gt;
+&lt;p&gt;在AndroidStudio中，File-&amp;gt;Project Structure-&amp;gt;Dependencies-&amp;gt;Library dependency 搜索butterknife即可，第一个就是.&lt;br&gt;
     
     </summary>
     

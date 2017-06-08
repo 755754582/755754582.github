@@ -178,15 +178,10 @@
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>有时候我们需要在EditText组件输入完直接点回车进入 回车点击事件中处理相关业务，总是换行很伤脑筋，索性网上搜了一个办法，很实用，在这里记下来。</p>
 <p>首先获取组件id：</p>
 <p> edt_city= (EditText) findViewById(R.id.edt_city);</p>
-<p>然后：</p>
-<pre><code>edt_city.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-    }
-});
-</code></pre><p>setOnEditorActionListener点击软键盘上的回车键才会触发</p>
-
+<p>然后：<br>
+        
+          <a class="article-more-a" href="/2017/02/28/Android EditText回车不换行/#more">more >></a>
+        
       
 
       
@@ -541,92 +536,13 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09" target="_blank" rel="external">http://www.jianshu.com/p/9c37856ddf09</a></p>
+        <p>参考文章：<a href="http://www.jianshu.com/p/9c37856ddf09">http://www.jianshu.com/p/9c37856ddf09</a></p>
 <p>ButterKnife的最新版本是8.4.0。</p>
 <p>首先，需要导入ButterKnife的jar包。</p>
-<p>在AndroidStudio中，File-&gt;Project Structure-&gt;Dependencies-&gt;Library dependency 搜索butterknife即可，第一个就是.</p>
-<p>另外一种就是直接在build:grade（app）dependencies里添加：</p>
-<blockquote>
-<pre><code>compile &apos;com.jakewharton:butterknife:8.4.0&apos;
-annotationProcessor &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;
-</code></pre></blockquote>
-<p>ok，现在正式开始使用吧，用法也很简单<br>在Activity子类的onCreate()方法里使用ButterKnife.bind(this);即可</p>
-<blockquote>
-<pre><code>protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
-    tv1.setText(&quot;hi!sy&quot;)
-</code></pre></blockquote>
-<p><strong>注意</strong>：一定要在setContentView之后写。</p>
-<p><strong>再然后</strong>，把光标放在<strong>R.layout.activity_main</strong>上，鼠标右击，选中<strong>Generate…(Alt+Insert)</strong>,点击会出现：</p>
-<p><img src="http://img.blog.csdn.net/20170110163859957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p><strong>然后这样</strong><br><img src="http://img.blog.csdn.net/20170111125826322?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc3k3NTU3NTQ1ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>选中的有TextView点击事件和findViewById的注解，点击Confirm就成功了！</p>
-<p>什么，你说没有，别着急，你需要安装一个小插件（不要嫌麻烦，其实很简单，一劳永逸）</p>
-<p>在AndroidStudio-&gt;File-&gt;Settings-&gt;Plugins-&gt;搜索Zelezny下载添加就行 ，可以快速生成对应组件的实例对象，不用手动写。</p>
-<p>使用时，在要导入注解的Activity 或 Fragment 或 ViewHolder的layout资源代码上，右键——&gt;<strong>Generate</strong>——<strong>Generate ButterKnife Injections</strong>。</p>
-<p><strong>源码:</strong></p>
-<blockquote>
-<pre><code>public class MainActivity extends Activity {
-
-    @BindView(R.id.tv_time)
-    TextView tvTime;
-    @BindView(R.id.activity_main)
-    RelativeLayout activityMain;
-    @BindView(R.id.tv_cal)
-    TextView tvCal;
-    @BindView(R.id.tv_date)
-    TextView tvDate;
-    Time time;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        tvTime.setText(&quot;Time类&quot;);
-        tvCal.setText(&quot;Calender类&quot;);
-        tvDate.setText(&quot;Date类&quot;);
-
-        initTime();
-
-    }
-
-    private void initTime() {
-        time = new Time();
-        time.setToNow();
-
-    }
-
-    @OnClick({R.id.tv_cal, R.id.tv_date,R.id.tv_time})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_time://点击第一个
-                String times = time.year + &quot;年&quot; + time.month + &quot;月&quot; + time.monthDay
-                        + &quot;日&quot; + time.hour + &quot;时&quot; + time.minute + &quot;分&quot; + time.second + &quot;秒&quot;
-                        + &quot;:现在是一年中的第&quot; + time.yearDay + &quot;天&quot;;
-                Toast.makeText(this, Time.getCurrentTimezone() + times, Toast.LENGTH_SHORT).show();
-                tvTime.setText(times);
-                break;
-            case R.id.tv_cal:
-                break;
-            case R.id.tv_date:
-                break;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        Unbinder unbinder=ButterKnife.bind(this);
-//        unbinder.unbind();
-        ButterKnife.bind(this).unbind();
-    }
-
-}
-</code></pre></blockquote>
-
+<p>在AndroidStudio中，File-&gt;Project Structure-&gt;Dependencies-&gt;Library dependency 搜索butterknife即可，第一个就是.<br>
+        
+          <a class="article-more-a" href="/2017/02/28/注解ButterKnife的基本使用/#more">more >></a>
+        
       
 
       
